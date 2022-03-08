@@ -2,8 +2,7 @@ Projeto avaliativo 2 do primeiro módulo back-end do curso DevHouse Senior Siste
 
 **Proposta ORM**
 
-![ORM.png](https://raw.githubusercontent.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/main/images/ORM.png)
+![ORMDevAgro.png](https://raw.githubusercontent.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/main/images/ORMDevAgro.png)
 
 #########################################
-
 
