@@ -29,12 +29,18 @@ public class Fazenda {
     @Column(name = "ultima_colheita", nullable = false)
     private LocalDate ultimaColheita;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "grao_id")
     private Grao grao;
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+//    @Override
+//    public String toString() {
+//        return "Empresa: {" + "nome: " + empresa.getNome() + "" +
+//                " Fazenda: {" + "nome: " + this.getNome() + "}";
+//
+//    }
 }

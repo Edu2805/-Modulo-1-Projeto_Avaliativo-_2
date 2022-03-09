@@ -5,11 +5,15 @@ import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.repositories.EmpresaRepository;
 import com.devinhouse.devagro.repositories.FazendaRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Service
 public class FazendaService {
 
@@ -34,5 +38,9 @@ public class FazendaService {
 
     public void delete(Long id){
         fazendaRepository.deleteById(id);
+    }
+
+    public List<Fazenda> findByIdAndEmpresaNome(Long id){
+        return fazendaRepository.findByIdAndEmpresaNome(id);
     }
 }

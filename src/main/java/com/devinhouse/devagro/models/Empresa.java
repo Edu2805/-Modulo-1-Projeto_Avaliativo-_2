@@ -28,13 +28,13 @@ public class Empresa {
     @Column(nullable = false, length = 100)
     private String endereco;
 
-    @OneToMany(mappedBy = "empresa")
-    private List<Fazenda> fazenda = new ArrayList<>();
-
-    @OneToMany(mappedBy = "empresa")
-    private List<Funcionario> funcionario = new ArrayList<>();
-
-    @OneToMany(mappedBy = "empresa")
-    private List<Grao> grao = new ArrayList<>();
+//    @OneToMany(mappedBy = "empresa")
+//    private List<Fazenda> fazenda = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "empresa")
+//    private List<Funcionario> funcionario = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "empresa")
+//    private List<Grao> grao = new ArrayList<>();
 
 }

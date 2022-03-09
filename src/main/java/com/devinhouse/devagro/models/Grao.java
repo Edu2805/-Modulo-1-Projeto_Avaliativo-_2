@@ -24,7 +24,6 @@ public class Grao {
     @Column(name = "tempo_medio_colheita", nullable = false)
     private double tempoMedioColheita;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;

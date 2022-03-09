@@ -1,12 +1,13 @@
 package com.devinhouse.devagro.services;
 
 import com.devinhouse.devagro.models.Empresa;
+import com.devinhouse.devagro.models.Fazenda;
+import com.devinhouse.devagro.models.dto.response.QuantidadeFazendasEmpresaDto;
 import com.devinhouse.devagro.repositories.EmpresaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -34,4 +35,10 @@ public class EmpresaService {
     public void delete(Long id){
         empresaRepository.deleteById(id);
     }
+
+//    public int verifica(List<QuantidadeFazendasEmpresaDto> fazenda) {
+//        var fazendaDto = new QuantidadeFazendasEmpresaDto();
+//
+//        return empresaRepository.verifica(fazendaDto.getFazenda());
+//    }
 }

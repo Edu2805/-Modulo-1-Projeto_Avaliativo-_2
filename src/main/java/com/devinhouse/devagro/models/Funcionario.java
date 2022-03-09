@@ -39,7 +39,6 @@ public class Funcionario {
     @Column(name = "data_admissao", nullable = false)
     private LocalDate dataAdmissao;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;

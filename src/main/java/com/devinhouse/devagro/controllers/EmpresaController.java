@@ -1,12 +1,13 @@
 package com.devinhouse.devagro.controllers;
 
 import com.devinhouse.devagro.models.Empresa;
-import com.devinhouse.devagro.models.dto.EmpresaDto;
+import com.devinhouse.devagro.models.dto.response.ListaEmpresasDto;
+import com.devinhouse.devagro.models.dto.response.ListaFazendaEmpresaDto;
+import com.devinhouse.devagro.models.dto.response.QuantidadeFazendasEmpresaDto;
 import com.devinhouse.devagro.services.EmpresaService;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.devinhouse.devagro.services.FazendaService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -22,20 +24,30 @@ import java.util.List;
 public class EmpresaController {
 
     private EmpresaService empresaService;
+    private ModelMapper modelMapper;
+
+    public ListaEmpresasDto listaEmpresasConverter(Empresa empresa){
+        return modelMapper.map(empresa, ListaEmpresasDto.class);
+    }
+
+    public QuantidadeFazendasEmpresaDto quantidadeEmpresasFazendasConverter(Empresa empresa){
+        return modelMapper.map(empresa, QuantidadeFazendasEmpresaDto.class);
+    }
 
     @GetMapping
-    public ResponseEntity<List<Empresa>> listaEmpresas(){
+    public ResponseEntity<List<ListaEmpresasDto>> listaEmpresas(){
 
-        List<Empresa> list = empresaService.findAll();
-
-        return ResponseEntity.ok().body(list);
+        return ResponseEntity.ok().body(empresaService.findAll()
+                .stream()
+                .map(this::listaEmpresasConverter)
+                .collect(Collectors.toList()));
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Empresa> listaEmpresaId(@PathVariable Long id){
-        Empresa empresa = empresaService.findById(id);
-        return ResponseEntity.ok().body(empresa);
-    }
+//    @GetMapping
+//    public ResponseEntity<ListaFazendaEmpresaDto> listaEmpresaId(@PathVariable Long id){
+//        ListaFazendaEmpresaDto listaFazendaEmpresaDto = new ListaFazendaEmpresaDto(empresaService.findById(id), fazendaService.findAll());
+//        return ResponseEntity.ok().body(listaFazendaEmpresaDto);
+//    }
 
     @PostMapping
     public  ResponseEntity<Empresa> insert(@RequestBody Empresa empresa){
