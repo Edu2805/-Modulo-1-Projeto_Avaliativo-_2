@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Service
 public class FazendaService {
 
@@ -40,7 +40,7 @@ public class FazendaService {
         fazendaRepository.deleteById(id);
     }
 
-    public List<Fazenda> findByIdAndEmpresaNome(Long id){
-        return fazendaRepository.findByIdAndEmpresaNome(id);
+    public List<Fazenda> findFazendasByEmpresa(Long id){
+        return fazendaRepository.findFazendasByEmpresa_Id(id);
     }
 }

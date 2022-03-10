@@ -1,22 +1,26 @@
 package com.devinhouse.devagro.models.dto.response;
 
 import com.devinhouse.devagro.models.Empresa;
-import com.devinhouse.devagro.models.Fazenda;
+import com.devinhouse.devagro.models.Grao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
+import java.time.LocalDate;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuantidadeFazendasEmpresaDto {
+public class ListaFazendasDto {
 
+    private Long id;
     private String nome;
-    private List<Fazenda> fazendas;
-
+    private String endereco;
+    private int estoque;
+    private LocalDate ultimaColheita;
+    private Grao grao;
+    private Empresa empresa;
 }

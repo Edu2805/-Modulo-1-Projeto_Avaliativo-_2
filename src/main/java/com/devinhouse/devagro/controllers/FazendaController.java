@@ -1,57 +1,54 @@
 package com.devinhouse.devagro.controllers;
 
-import com.devinhouse.devagro.models.Empresa;
 import com.devinhouse.devagro.models.Fazenda;
-import com.devinhouse.devagro.models.dto.response.ListaEmpresasDto;
 import com.devinhouse.devagro.models.dto.response.ListaFazendaEmpresaDto;
-import com.devinhouse.devagro.models.dto.response.QuantidadeFazendasEmpresaDto;
-import com.devinhouse.devagro.services.EmpresaService;
+import com.devinhouse.devagro.models.dto.response.ListaFazendasDto;
 import com.devinhouse.devagro.services.FazendaService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @RestController
 @RequestMapping(value = "/fazenda")
 public class FazendaController {
 
     private FazendaService fazendaService;
-
     private ModelMapper modelMapper;
 
-    public ListaFazendaEmpresaDto listaEmpresasConverter(Fazenda fazenda){
+    //Convert DTOs
+    public ListaFazendasDto listaFazendasDtoConverter(Fazenda fazenda) {
+        return modelMapper.map(fazenda, ListaFazendasDto.class);
+    }
+
+    public ListaFazendaEmpresaDto listaFazendasEmpresaDtoConverter(Fazenda fazenda) {
         return modelMapper.map(fazenda, ListaFazendaEmpresaDto.class);
     }
 
+    @GetMapping
+    public ResponseEntity<List<ListaFazendasDto>> listaFazendas() {
+
+        return ResponseEntity.ok().body(fazendaService.findAll()
+                .stream()
+                .map(this::listaFazendasDtoConverter)
+                .collect(Collectors.toList()));
+    }
+
     @GetMapping(value = "/quantidadefazendas/{id}")
-    public ResponseEntity<Fazenda> listaEmpresaId(@PathVariable Long id){
+    public ResponseEntity<Fazenda> listaEmpresaId(@PathVariable Long id) {
         Fazenda fazenda = fazendaService.findById(id);
         return ResponseEntity.ok().body(fazenda);
     }
 
     @GetMapping(value = "/listarfazendas/{id}")
-    public ResponseEntity<List<ListaFazendaEmpresaDto>> listaFazendasEmpresa(@PathVariable Long id){
-        return ResponseEntity.ok().body(fazendaService.findByIdAndEmpresaNome(id)
-                .stream().map(this::listaEmpresasConverter)
+    public ResponseEntity<List<ListaFazendaEmpresaDto>> listaFazendasEmpresa(@PathVariable Long id) {
+        return ResponseEntity.ok().body(fazendaService.findFazendasByEmpresa(id)
+                .stream().map(this::listaFazendasEmpresaDtoConverter)
                 .collect(Collectors.toList()));
-    }
-
-
-    @PostMapping
-    public ResponseEntity<Fazenda> insert(@RequestBody Fazenda fazenda){
-        fazenda = fazendaService.add(fazenda);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")
-                .buildAndExpand(fazenda.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(fazenda);
     }
 }

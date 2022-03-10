@@ -32,7 +32,7 @@ public class Funcionario {
     @Column(nullable = false, unique = true, length = 14)
     private String telefone;
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //@JsonEnumDefaultValue - verificar
     private Sexo sexo;
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;

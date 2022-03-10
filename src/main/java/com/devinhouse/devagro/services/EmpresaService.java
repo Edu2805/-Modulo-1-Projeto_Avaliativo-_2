@@ -7,6 +7,7 @@ import com.devinhouse.devagro.repositories.EmpresaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @AllArgsConstructor
@@ -36,9 +37,4 @@ public class EmpresaService {
         empresaRepository.deleteById(id);
     }
 
-//    public int verifica(List<QuantidadeFazendasEmpresaDto> fazenda) {
-//        var fazendaDto = new QuantidadeFazendasEmpresaDto();
-//
-//        return empresaRepository.verifica(fazendaDto.getFazenda());
-//    }
 }

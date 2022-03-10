@@ -30,10 +30,6 @@ public class EmpresaController {
         return modelMapper.map(empresa, ListaEmpresasDto.class);
     }
 
-    public QuantidadeFazendasEmpresaDto quantidadeEmpresasFazendasConverter(Empresa empresa){
-        return modelMapper.map(empresa, QuantidadeFazendasEmpresaDto.class);
-    }
-
     @GetMapping
     public ResponseEntity<List<ListaEmpresasDto>> listaEmpresas(){
 
@@ -43,30 +39,4 @@ public class EmpresaController {
                 .collect(Collectors.toList()));
     }
 
-//    @GetMapping
-//    public ResponseEntity<ListaFazendaEmpresaDto> listaEmpresaId(@PathVariable Long id){
-//        ListaFazendaEmpresaDto listaFazendaEmpresaDto = new ListaFazendaEmpresaDto(empresaService.findById(id), fazendaService.findAll());
-//        return ResponseEntity.ok().body(listaFazendaEmpresaDto);
-//    }
-
-    @PostMapping
-    public  ResponseEntity<Empresa> insert(@RequestBody Empresa empresa){
-        empresa = empresaService.add(empresa);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")
-                .buildAndExpand(empresa.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(empresa);
-    }
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Empresa> atualizarEmpresa(@RequestBody @Validated Empresa empresa, UriComponentsBuilder uriBuilder){
-
-        return  ResponseEntity.ok().body(empresaService.update(empresa));
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        empresaService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
 }
