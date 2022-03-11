@@ -1,11 +1,8 @@
 package com.devinhouse.devagro.services;
 
-import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Funcionario;
-import com.devinhouse.devagro.repositories.FazendaRepository;
 import com.devinhouse.devagro.repositories.FuncionarioRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.spel.spi.Function;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +32,13 @@ public class FuncionarioService {
 
     public void delete(Long id){
         funcionarioRepository.deleteById(id);
+    }
+
+    public List<Funcionario> findFuncionarioByEmpresa_Id(Long id){
+        return funcionarioRepository.findFuncionarioByEmpresa_Id(id);
+    }
+
+    public Integer countFuncionarioByEmpresa_Id(Long id){
+        return funcionarioRepository.countFuncionarioByEmpresa_Id(id);
     }
 }

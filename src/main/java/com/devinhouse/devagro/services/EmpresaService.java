@@ -1,13 +1,10 @@
 package com.devinhouse.devagro.services;
 
 import com.devinhouse.devagro.models.Empresa;
-import com.devinhouse.devagro.models.Fazenda;
-import com.devinhouse.devagro.models.dto.response.QuantidadeFazendasEmpresaDto;
 import com.devinhouse.devagro.repositories.EmpresaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @AllArgsConstructor

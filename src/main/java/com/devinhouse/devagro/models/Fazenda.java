@@ -1,13 +1,12 @@
 package com.devinhouse.devagro.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 @Getter
@@ -26,8 +25,9 @@ public class Fazenda {
     @Column(nullable = false, length = 100)
     private String endereco;
     @Column(nullable = false)
+    @Min(0L)
     private int estoque;
-    @Column(name = "ultima_colheita", nullable = false)
+    @Column(name = "ultima_colheita")
     private LocalDate ultimaColheita;
 
     @ManyToOne
@@ -38,10 +38,4 @@ public class Fazenda {
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-//    @Override
-//    public String toString() {
-//        return "Empresa: {" + "nome: " + empresa.getNome() + "" +
-//                " Fazenda: {" + "nome: " + this.getNome() + "}";
-//
-//    }
 }

@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -27,14 +25,5 @@ public class Empresa {
     private String cnpj;
     @Column(nullable = false, length = 100)
     private String endereco;
-
-//    @OneToMany(mappedBy = "empresa")
-//    private List<Fazenda> fazenda = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "empresa")
-//    private List<Funcionario> funcionario = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "empresa")
-//    private List<Grao> grao = new ArrayList<>();
 
 }

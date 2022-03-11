@@ -1,8 +1,6 @@
 package com.devinhouse.devagro.services;
 
-import com.devinhouse.devagro.models.Funcionario;
 import com.devinhouse.devagro.models.Grao;
-import com.devinhouse.devagro.repositories.FuncionarioRepository;
 import com.devinhouse.devagro.repositories.GraoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,5 +32,9 @@ public class GraoService {
 
     public void delete(Long id){
         graoRepository.deleteById(id);
+    }
+
+    public List<Grao> findGraosByEmpresa_Id(long id){
+        return graoRepository.findGraosByEmpresa_Id(id);
     }
 }

@@ -1,18 +1,17 @@
 package com.devinhouse.devagro.controllers;
 
-import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Funcionario;
-import com.devinhouse.devagro.services.FazendaService;
+import com.devinhouse.devagro.models.dto.response.ListaFuncionariosEmpresa;
 import com.devinhouse.devagro.services.FuncionarioService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -20,6 +19,23 @@ import java.net.URI;
 public class FuncionarioController {
 
     private FuncionarioService funcionarioService;
+    private ModelMapper modelMapper;
+
+    public ListaFuncionariosEmpresa listaFuncionariosEmpresaDtoConverter(Funcionario funcionario) {
+        return modelMapper.map(funcionario, ListaFuncionariosEmpresa.class);
+    }
+
+    @GetMapping(value = "/listarfuncionariosempresa/{id}")
+    public ResponseEntity<List<ListaFuncionariosEmpresa>> listaGraosEmpresa(@PathVariable Long id) {
+        return ResponseEntity.ok().body(funcionarioService.findFuncionarioByEmpresa_Id(id)
+                .stream().map(this::listaFuncionariosEmpresaDtoConverter)
+                .collect(Collectors.toList()));
+    }
+
+    @GetMapping(value = "/quantidadefuncionarios/{id}")
+    public ResponseEntity<Integer> listaQuantidadeFuncionariosEmpresa(@PathVariable Long id) {
+        return ResponseEntity.ok().body(funcionarioService.countFuncionarioByEmpresa_Id(id));
+    }
 
     @PostMapping
     public ResponseEntity<Funcionario> insert(@RequestBody Funcionario funcionario){

@@ -1,17 +1,12 @@
 package com.devinhouse.devagro.services;
 
-import com.devinhouse.devagro.models.Empresa;
 import com.devinhouse.devagro.models.Fazenda;
-import com.devinhouse.devagro.repositories.EmpresaRepository;
 import com.devinhouse.devagro.repositories.FazendaRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -31,9 +26,15 @@ public class FazendaService {
         return fazendaRepository.save(fazenda);
     }
 
-    public Fazenda update(Long id, Fazenda fazenda){
+    public Fazenda update(Fazenda fazenda){
+
+
         Fazenda result = fazendaRepository.save(fazenda);
         return result;
+    }
+
+    public Optional<Fazenda> findByIdUpDate(Long id){
+        return fazendaRepository.findById(id);
     }
 
     public void delete(Long id){
@@ -42,5 +43,13 @@ public class FazendaService {
 
     public List<Fazenda> findFazendasByEmpresa(Long id){
         return fazendaRepository.findFazendasByEmpresa_Id(id);
+    }
+
+    public Integer countFazendasByEmpresa_Id(Long id){
+        return fazendaRepository.countFazendaByEmpresa_Id(id);
+    }
+
+    public List<Fazenda> findFazendaByGrao_IdAndEstoqueOrderByEmpresaEstoqueAsc(Long id){
+        return fazendaRepository.findFazendasByGrao_IdOrderByEstoque(id);
     }
 }

@@ -1,7 +1,6 @@
 package com.devinhouse.devagro.models;
 
 import com.devinhouse.devagro.models.enumns.Sexo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
