@@ -1,6 +1,9 @@
 package com.devinhouse.devagro.controllers;
 
+import com.devinhouse.devagro.models.Empresa;
 import com.devinhouse.devagro.models.Fazenda;
+import com.devinhouse.devagro.models.Funcionario;
+import com.devinhouse.devagro.models.dto.request.CadastroFazendaDto;
 import com.devinhouse.devagro.models.dto.request.RegistraEntradaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.request.RegistraSaidaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.response.*;
@@ -8,9 +11,13 @@ import com.devinhouse.devagro.services.FazendaService;
 import com.devinhouse.devagro.validations.ValidacaoEstoque;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -87,13 +94,39 @@ public class FazendaController {
     }
 
     @PutMapping(value = "/registrasaidacolheita/{id}")
-    public ResponseEntity<Fazenda> registraSaidaColheita(@PathVariable Long id, @RequestBody RegistraSaidaColheitaFazendaDto registraSaidaColheitaFazendaDto){
+    public ResponseEntity<Object> registraSaidaColheita(@PathVariable Long id, @RequestBody RegistraSaidaColheitaFazendaDto registraSaidaColheitaFazendaDto){
 
         Optional<Fazenda> optionalFazenda = fazendaService.findByIdUpDate(id);
         Fazenda fazenda = optionalFazenda.get();
+
+        if(validacaoEstoque.validaEstoque(optionalFazenda.get().getEstoque(), registraSaidaColheitaFazendaDto.getSaidaColheita())){
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")
+                    .buildAndExpand(fazenda.getId()).toUri();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Estoque insuficiente!");
+        }
 
         fazenda.setEstoque(registraSaidaColheitaFazendaDto.registraSaidaColheita(fazendaService.update(fazenda)));
         return  ResponseEntity.ok().body(fazendaService.update(fazendaService.update(fazenda)));
     }
 
+    @PostMapping
+    public ResponseEntity<CadastroFazendaDto> insert(@RequestBody @Valid CadastroFazendaDto cadastroFazendaDto){
+        var fazenda = new Fazenda();
+        fazenda = fazendaService.add(cadastroFazendaDto.converter());
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")
+                .buildAndExpand(fazenda.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(cadastroFazendaDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> excluirEmpresa(@PathVariable Long id){
+        Optional<Fazenda> fazendaOptional = fazendaService.findByIdDelete(id);
+        if(!fazendaOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fazenda não encontrada!");
+        }
+
+        fazendaService.delete(fazendaOptional.get());
+        return  ResponseEntity.ok().body("Fazenda excluída com sucesso!");
+    }
 }

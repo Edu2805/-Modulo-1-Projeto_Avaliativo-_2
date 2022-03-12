@@ -5,6 +5,7 @@ import com.devinhouse.devagro.repositories.FazendaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class FazendaService {
         return fazendaRepository.getById(id);
     }
 
+    @Transactional
     public Fazenda add(Fazenda fazenda){
         return fazendaRepository.save(fazenda);
     }
@@ -37,8 +39,9 @@ public class FazendaService {
         return fazendaRepository.findById(id);
     }
 
-    public void delete(Long id){
-        fazendaRepository.deleteById(id);
+    @Transactional
+    public void delete(Fazenda fazenda){
+        fazendaRepository.delete(fazenda);
     }
 
     public List<Fazenda> findFazendasByEmpresa(Long id){
@@ -52,4 +55,9 @@ public class FazendaService {
     public List<Fazenda> findFazendaByGrao_IdAndEstoqueOrderByEmpresaEstoqueAsc(Long id){
         return fazendaRepository.findFazendasByGrao_IdOrderByEstoque(id);
     }
+
+    public Optional<Fazenda> findByIdDelete(Long id) {
+        return fazendaRepository.findById(id);
+    }
+
 }

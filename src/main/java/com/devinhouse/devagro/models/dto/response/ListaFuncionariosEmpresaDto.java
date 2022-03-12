@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListaFuncionariosEmpresa {
+public class ListaFuncionariosEmpresaDto {
 
     private Long id;
     private String nome;

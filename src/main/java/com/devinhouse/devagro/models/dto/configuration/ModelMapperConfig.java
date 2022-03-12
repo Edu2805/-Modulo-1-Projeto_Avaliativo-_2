@@ -1,4 +1,4 @@
-package com.devinhouse.devagro.configuration;
+package com.devinhouse.devagro.models.dto.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

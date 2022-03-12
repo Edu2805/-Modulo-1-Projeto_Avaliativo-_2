@@ -5,7 +5,9 @@ import com.devinhouse.devagro.repositories.FuncionarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -21,6 +23,7 @@ public class FuncionarioService {
         return funcionarioRepository.getById(id);
     }
 
+    @Transactional
     public Funcionario add(Funcionario funcionario){
         return funcionarioRepository.save(funcionario);
     }
@@ -30,8 +33,9 @@ public class FuncionarioService {
         return result;
     }
 
-    public void delete(Long id){
-        funcionarioRepository.deleteById(id);
+    @Transactional
+    public void delete(Funcionario funcionario){
+        funcionarioRepository.delete(funcionario);
     }
 
     public List<Funcionario> findFuncionarioByEmpresa_Id(Long id){
@@ -41,4 +45,9 @@ public class FuncionarioService {
     public Integer countFuncionarioByEmpresa_Id(Long id){
         return funcionarioRepository.countFuncionarioByEmpresa_Id(id);
     }
+
+    public Optional<Funcionario> findByIdDelete(Long id) {
+        return funcionarioRepository.findById(id);
+    }
+
 }

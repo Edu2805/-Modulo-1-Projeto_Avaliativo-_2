@@ -25,7 +25,7 @@ public class Fazenda {
     @Column(nullable = false, length = 100)
     private String endereco;
     @Column(nullable = false)
-    @Min(0L)
+    @Min(value = 0L, message = "Estoque insuficiente")
     private int estoque;
     @Column(name = "ultima_colheita")
     private LocalDate ultimaColheita;

@@ -5,7 +5,9 @@ import com.devinhouse.devagro.repositories.GraoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -21,6 +23,7 @@ public class GraoService {
         return graoRepository.getById(id);
     }
 
+    @Transactional
     public Grao add(Grao grao){
         return graoRepository.save(grao);
     }
@@ -30,11 +33,16 @@ public class GraoService {
         return result;
     }
 
-    public void delete(Long id){
-        graoRepository.deleteById(id);
+    @Transactional
+    public void delete(Grao grao){
+        graoRepository.delete(grao);
     }
 
     public List<Grao> findGraosByEmpresa_Id(long id){
         return graoRepository.findGraosByEmpresa_Id(id);
+    }
+
+    public Optional<Grao> findByIdDelete(Long id) {
+        return graoRepository.findById(id);
     }
 }
