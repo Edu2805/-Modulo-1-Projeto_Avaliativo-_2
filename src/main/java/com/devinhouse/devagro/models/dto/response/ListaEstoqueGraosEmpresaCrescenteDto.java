@@ -13,7 +13,14 @@ import lombok.Setter;
 public class ListaEstoqueGraosEmpresaCrescenteDto {
 
     private Grao grao;
-    private int estoque;
-    private String nome;
+    private double estoque;
 
+
+    @Override
+    public String toString() {
+        return "ListaEstoqueGraosEmpresaCrescenteDto{" +
+                "grao=" + grao.getNome() +
+                ", estoque=" + estoque +
+                '}';
+    }
 }

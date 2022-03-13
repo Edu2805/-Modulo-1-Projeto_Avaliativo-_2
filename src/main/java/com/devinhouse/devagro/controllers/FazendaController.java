@@ -20,7 +20,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -75,8 +77,21 @@ public class FazendaController {
     @GetMapping(value = "/listafazendasdetalhadas/{id}")
     public ResponseEntity<List<ListaFazendasDetalhadasEmpresaDto>> listaFazendasDetalhadasEmpresa(@PathVariable Long id) {
 
+        fazendaService.findFazendasByEmpresa(id)
+                .listIterator()
+                .forEachRemaining(fazenda -> {
 
-        //Usar o ResultSet...
+                    LocalDate ultimaColheita = fazenda.getUltimaColheita();
+                    Long tempoMedioColheita = fazenda.getGrao().getTempoMedioColheita();
+
+                    LocalDate dataProximaColheita = ultimaColheita.plusDays(tempoMedioColheita);
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    String formattedString = dataProximaColheita.format(formatter);
+
+                    fazenda.setProximaColheita(formattedString);
+                });
+
         return ResponseEntity.ok().body(fazendaService.findFazendasByEmpresa(id)
                 .stream().map(this::listaFazendasEmpresaDetalhadaDtoConverter)
                 .collect(Collectors.toList()));
@@ -85,21 +100,24 @@ public class FazendaController {
     @GetMapping(value = "/estoquegraoscrescente/{id}")
     public ResponseEntity<List<ListaEstoqueGraosEmpresaCrescenteDto>> listaGraosEmpresaEstoqueAsc(@PathVariable Long id) {
 
+
         return ResponseEntity.ok().body(fazendaService.findFazendaByGrao_IdAndEstoqueOrderByEmpresaEstoqueAsc(id)
                 .stream().map(this::listaEstoqueGraosEmpresaCrescenteDto)
                 .collect(Collectors.toList()));
     }
 
     @PutMapping(value = "/registraentradacolheita/{id}")
-    public ResponseEntity<Fazenda> registraEntradaColheita(@PathVariable Long id, @RequestBody RegistraEntradaColheitaFazendaDto registraColheitaFazendaDto){
+    public ResponseEntity<Object> registraEntradaColheita(@PathVariable Long id, @RequestBody RegistraEntradaColheitaFazendaDto registraColheitaFazendaDto){
 
         Optional<Fazenda> optionalFazenda = fazendaService.findByIdUpDate(id);
         Fazenda fazenda = optionalFazenda.get();
 
-        //Verificação para valor não ser negativo
+        if(validacaoEstoque.validaEntrada(registraColheitaFazendaDto.getEntradaColheita())){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Valor não pode ser negativo!");
+        }
+
         fazenda.setEstoque(registraColheitaFazendaDto.registraEntradaColheita(fazenda));
         fazenda.setUltimaColheita(LocalDate.now());
-
         return  ResponseEntity.ok().body(fazendaService.update(fazendaService.update(fazenda)));
     }
 

@@ -39,6 +39,19 @@ public class GraoController {
 
     @GetMapping(value = "/listargraosempresa/{id}")
     public ResponseEntity<List<ListaGraosEmpresaDto>> listaGraosEmpresa(@PathVariable Long id) {
+
+        /*
+        SELECT DISTINCT empresa.nome, grao.nome
+        FROM fazenda
+        INNER JOIN empresa
+        ON fazenda.empresa_id = empresa.id
+        INNER JOIN grao
+        ON fazenda.grao_id = grao.id
+        WHERE empresa.id = 2
+         */
+
+
+
         return ResponseEntity.ok().body(graoService.findGraosByEmpresa_Id(id)
                 .stream().map(this::listaGraosEmpresaDtoConverter)
                 .collect(Collectors.toList()));

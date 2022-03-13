@@ -14,6 +14,6 @@ public class ListaFazendaEmpresaDto {
 
     private Long id;
     private String nome;
-    private Empresa empresa;
+
 
 }

@@ -14,4 +14,12 @@ public class ValidacaoEstoque {
         return false;
     }
 
+    public boolean validaEntrada(double entrada){
+
+        if(entrada <= 0){
+            return true;
+        }
+        return false;
+    }
+
 }

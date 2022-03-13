@@ -29,6 +29,8 @@ public class Fazenda {
     private double estoque;
     @Column(name = "ultima_colheita")
     private LocalDate ultimaColheita;
+    @Transient
+    private String proximaColheita;
 
     @ManyToOne
     @JoinColumn(name = "grao_id")
