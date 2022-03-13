@@ -27,13 +27,13 @@ public class CadastroFuncionarioDto {
     private String sobrenome;
     @NotBlank
     @Size(max = 14)
-    private String cpf; //validar cpf com regex
+    private String cpf;
     @NotBlank
     @Size(max = 100)
     private String endereco;
     @NotBlank
     @Size(max = 14)
-    private String telefone; //validar telefone com regex
+    private String telefone;
     @NotNull
     private Sexo sexo;
     @NotNull

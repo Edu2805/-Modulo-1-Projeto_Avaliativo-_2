@@ -13,8 +13,8 @@ import lombok.Setter;
 public class RegistraSaidaColheitaFazendaDto {
 
     private Long id;
-    private int estoque;
-    private int saidaColheita;
+    private double estoque;
+    private double saidaColheita;
 
 
     public Fazenda converterRegistraEntradaColheitaFazenda(){
@@ -26,7 +26,7 @@ public class RegistraSaidaColheitaFazendaDto {
 
     }
 
-    public int registraSaidaColheita(Fazenda fazendaEstoque){
+    public double registraSaidaColheita(Fazenda fazendaEstoque){
 
         this.estoque = fazendaEstoque.getEstoque();
         return this.estoque -= saidaColheita;

@@ -25,13 +25,12 @@ public class CadastroFazendaDto {
     @NotBlank
     @Size(max = 100)
     private String endereco;
-    @NotBlank
-    private Grao grao;
-    @NotBlank
-    private int estoque;
-    @NotBlank
-    private Empresa empresa;
     @NotNull
+    private Grao grao;
+    @NotNull
+    private double estoque;
+    @NotNull
+    private Empresa empresa;
     private LocalDate ultimaColheita;
 
     public Fazenda converter(){
@@ -41,7 +40,7 @@ public class CadastroFazendaDto {
         fazenda.setGrao(this.grao);
         fazenda.setEstoque(this.estoque);
         fazenda.setEmpresa(this.empresa);
-        fazenda.setUltimaColheita(this.ultimaColheita);
+        fazenda.setUltimaColheita(LocalDate.now());
         return fazenda;
     }
 

@@ -3,7 +3,9 @@ package com.devinhouse.devagro.controllers;
 import com.devinhouse.devagro.models.Empresa;
 import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Funcionario;
+import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.models.dto.request.CadastroFazendaDto;
+import com.devinhouse.devagro.models.dto.request.CadastroGraoDto;
 import com.devinhouse.devagro.models.dto.request.RegistraEntradaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.request.RegistraSaidaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.response.*;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,7 +60,7 @@ public class FazendaController {
                 .collect(Collectors.toList()));
     }
 
-    @GetMapping(value = "/listarfazendas/{id}")
+    @GetMapping(value = "/listarfazendasempresa/{id}")
     public ResponseEntity<List<ListaFazendaEmpresaDto>> listaFazendasEmpresa(@PathVariable Long id) {
         return ResponseEntity.ok().body(fazendaService.findFazendasByEmpresa(id)
                 .stream().map(this::listaFazendasEmpresaDtoConverter)
@@ -71,6 +74,9 @@ public class FazendaController {
 
     @GetMapping(value = "/listafazendasdetalhadas/{id}")
     public ResponseEntity<List<ListaFazendasDetalhadasEmpresaDto>> listaFazendasDetalhadasEmpresa(@PathVariable Long id) {
+
+
+        //Usar o ResultSet...
         return ResponseEntity.ok().body(fazendaService.findFazendasByEmpresa(id)
                 .stream().map(this::listaFazendasEmpresaDetalhadaDtoConverter)
                 .collect(Collectors.toList()));
@@ -78,6 +84,7 @@ public class FazendaController {
 
     @GetMapping(value = "/estoquegraoscrescente/{id}")
     public ResponseEntity<List<ListaEstoqueGraosEmpresaCrescenteDto>> listaGraosEmpresaEstoqueAsc(@PathVariable Long id) {
+
         return ResponseEntity.ok().body(fazendaService.findFazendaByGrao_IdAndEstoqueOrderByEmpresaEstoqueAsc(id)
                 .stream().map(this::listaEstoqueGraosEmpresaCrescenteDto)
                 .collect(Collectors.toList()));
@@ -89,7 +96,10 @@ public class FazendaController {
         Optional<Fazenda> optionalFazenda = fazendaService.findByIdUpDate(id);
         Fazenda fazenda = optionalFazenda.get();
 
+        //Verificação para valor não ser negativo
         fazenda.setEstoque(registraColheitaFazendaDto.registraEntradaColheita(fazenda));
+        fazenda.setUltimaColheita(LocalDate.now());
+
         return  ResponseEntity.ok().body(fazendaService.update(fazendaService.update(fazenda)));
     }
 

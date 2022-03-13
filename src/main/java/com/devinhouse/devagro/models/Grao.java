@@ -21,7 +21,7 @@ public class Grao {
     @Column(nullable = false, length = 60)
     private String nome;
     @Column(name = "tempo_medio_colheita", nullable = false)
-    private double tempoMedioColheita;
+    private Long tempoMedioColheita;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")

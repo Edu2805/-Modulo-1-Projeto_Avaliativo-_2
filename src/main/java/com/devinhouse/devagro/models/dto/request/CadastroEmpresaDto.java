@@ -20,7 +20,7 @@ public class CadastroEmpresaDto {
     private String nome;
     @NotBlank
     @Size(max = 18)
-    private String cnpj; //validar cnpj com regex
+    private String cnpj;
     @NotBlank
     @Size(max = 100)
     private String endereco;

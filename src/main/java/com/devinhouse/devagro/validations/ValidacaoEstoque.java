@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ValidacaoEstoque {
 
-    public boolean validaEstoque(int estoque, int saida){
+    public boolean validaEstoque(double estoque, double saida){
 
         if(saida > estoque){
             return true;
