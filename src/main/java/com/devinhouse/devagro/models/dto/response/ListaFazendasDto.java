@@ -22,5 +22,5 @@ public class ListaFazendasDto {
     private int estoque;
     private LocalDate ultimaColheita;
     private Grao grao;
-    private Empresa empresa;
+
 }

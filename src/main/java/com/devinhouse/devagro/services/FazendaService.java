@@ -1,6 +1,7 @@
 package com.devinhouse.devagro.services;
 
 import com.devinhouse.devagro.models.Fazenda;
+import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.models.dto.response.ListaFazendasDetalhadasEmpresaDto;
 import com.devinhouse.devagro.repositories.FazendaRepository;
 import lombok.AllArgsConstructor;
@@ -60,4 +61,5 @@ public class FazendaService {
     public Optional<Fazenda> findByIdDelete(Long id) {
         return fazendaRepository.findById(id);
     }
+
 }

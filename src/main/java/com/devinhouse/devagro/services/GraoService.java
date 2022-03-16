@@ -38,11 +38,12 @@ public class GraoService {
         graoRepository.delete(grao);
     }
 
-    public List<Grao> findGraosByEmpresa_Id(long id){
-        return graoRepository.findGraosByEmpresa_Id(id);
-    }
 
     public Optional<Grao> findByIdDelete(Long id) {
         return graoRepository.findById(id);
+    }
+
+    public List<Grao> findGraosByEmpresa_Id(long id){
+        return graoRepository.listaGraosPorEmpresa(id);
     }
 }

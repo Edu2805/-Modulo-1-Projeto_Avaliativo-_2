@@ -1,11 +1,8 @@
 package com.devinhouse.devagro.controllers;
 
-import com.devinhouse.devagro.models.Empresa;
 import com.devinhouse.devagro.models.Fazenda;
-import com.devinhouse.devagro.models.Funcionario;
 import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.models.dto.request.CadastroFazendaDto;
-import com.devinhouse.devagro.models.dto.request.CadastroGraoDto;
 import com.devinhouse.devagro.models.dto.request.RegistraEntradaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.request.RegistraSaidaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.response.*;
@@ -20,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
