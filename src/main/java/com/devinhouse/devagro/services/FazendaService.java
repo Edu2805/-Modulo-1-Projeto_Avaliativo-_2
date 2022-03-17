@@ -55,7 +55,7 @@ public class FazendaService {
     }
 
     public List<Fazenda> findFazendaByGrao_IdAndEstoqueOrderByEmpresaEstoqueAsc(Long id){
-        return fazendaRepository.findFazendasByGrao_IdOrderByEstoque(id);
+        return fazendaRepository.listaEstoqueGraosEmpresaAsc(id);
     }
 
     public Optional<Fazenda> findByIdDelete(Long id) {

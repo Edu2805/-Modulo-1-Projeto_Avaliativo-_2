@@ -1,5 +1,6 @@
 package com.devinhouse.devagro.services;
 
+import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.repositories.GraoRepository;
 import lombok.AllArgsConstructor;
@@ -46,4 +47,8 @@ public class GraoService {
     public List<Grao> findGraosByEmpresa_Id(long id){
         return graoRepository.listaGraosPorEmpresa(id);
     }
+
+//    public List<Grao> listaEstoqueGraosEmpresaAsc(Long id){
+//        return graoRepository.listaEstoqueGraosEmpresaAsc(id);
+//    }
 }

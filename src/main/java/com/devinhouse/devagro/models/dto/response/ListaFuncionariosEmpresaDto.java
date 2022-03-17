@@ -22,5 +22,4 @@ public class ListaFuncionariosEmpresaDto {
     private Sexo sexo;
     private LocalDate dataNascimento;
     private LocalDate dataAdmissao;
-    private Empresa empresa;
 }

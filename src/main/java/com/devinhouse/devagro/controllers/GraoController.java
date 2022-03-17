@@ -3,6 +3,7 @@ package com.devinhouse.devagro.controllers;
 import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.models.dto.request.CadastroGraoDto;
+import com.devinhouse.devagro.models.dto.response.ListaEstoqueGraosEmpresaCrescenteDto;
 import com.devinhouse.devagro.models.dto.response.ListaGraosDto;
 import com.devinhouse.devagro.models.dto.response.ListaGraosEmpresaDto;
 import com.devinhouse.devagro.services.GraoService;
@@ -34,6 +35,19 @@ public class GraoController {
     public ListaGraosEmpresaDto listaGraosEmpresaDto(Grao grao) {
         return modelMapper.map(grao, ListaGraosEmpresaDto.class);
     }
+
+//    public ListaEstoqueGraosEmpresaCrescenteDto listaEstoqueGraosEmpresaCrescenteDto(Grao grao) {
+//        return modelMapper.map(grao, ListaEstoqueGraosEmpresaCrescenteDto.class);
+//    }
+
+//    @GetMapping(value = "/estoquegraoscrescente/{id}")
+//    public ResponseEntity<List<ListaEstoqueGraosEmpresaCrescenteDto>> listaGraosEmpresaEstoqueAsc(@PathVariable Long id) {
+//
+//
+//        return ResponseEntity.ok().body(graoService.listaEstoqueGraosEmpresaAsc(id)
+//                .stream().map(this::listaEstoqueGraosEmpresaCrescenteDto)
+//                .collect(Collectors.toList()));
+//    }
 
     @GetMapping(value = "/listargraosempresa/{id}")
     public ResponseEntity<List<ListaGraosEmpresaDto>> listaGraosEmpresa(@PathVariable Long id) {
