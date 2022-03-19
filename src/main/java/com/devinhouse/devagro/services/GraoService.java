@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class GraoService {
 
     private GraoRepository graoRepository;
@@ -24,7 +25,7 @@ public class GraoService {
         return graoRepository.getById(id);
     }
 
-    @Transactional
+
     public Grao add(Grao grao){
         return graoRepository.save(grao);
     }
@@ -34,7 +35,7 @@ public class GraoService {
         return result;
     }
 
-    @Transactional
+
     public void delete(Grao grao){
         graoRepository.delete(grao);
     }
@@ -48,7 +49,4 @@ public class GraoService {
         return graoRepository.listaGraosPorEmpresa(id);
     }
 
-//    public List<Grao> listaEstoqueGraosEmpresaAsc(Long id){
-//        return graoRepository.listaEstoqueGraosEmpresaAsc(id);
-//    }
 }

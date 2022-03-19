@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class FazendaService {
 
     private FazendaRepository fazendaRepository;
@@ -25,7 +26,7 @@ public class FazendaService {
         return fazendaRepository.getById(id);
     }
 
-    @Transactional
+
     public Fazenda add(Fazenda fazenda){
         return fazendaRepository.save(fazenda);
     }
@@ -41,7 +42,7 @@ public class FazendaService {
         return fazendaRepository.findById(id);
     }
 
-    @Transactional
+
     public void delete(Fazenda fazenda){
         fazendaRepository.delete(fazenda);
     }

@@ -7,6 +7,7 @@ import com.devinhouse.devagro.models.dto.request.RegistraEntradaColheitaFazendaD
 import com.devinhouse.devagro.models.dto.request.RegistraSaidaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.response.*;
 import com.devinhouse.devagro.services.FazendaService;
+import com.devinhouse.devagro.services.GraoService;
 import com.devinhouse.devagro.validations.ValidacaoEstoque;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 public class FazendaController {
 
     private FazendaService fazendaService;
+//    private GraoService graoService;
     private ModelMapper modelMapper;
     private ValidacaoEstoque validacaoEstoque;
 
@@ -95,7 +97,6 @@ public class FazendaController {
 
     @GetMapping(value = "/estoquegraoscrescente/{id}")
     public ResponseEntity<List<ListaEstoqueGraosEmpresaCrescenteDto>> listaGraosEmpresaEstoqueAsc(@PathVariable Long id) {
-
 
         return ResponseEntity.ok().body(fazendaService.findFazendaByGrao_IdAndEstoqueOrderByEmpresaEstoqueAsc(id)
                 .stream().map(this::listaEstoqueGraosEmpresaCrescenteDto)

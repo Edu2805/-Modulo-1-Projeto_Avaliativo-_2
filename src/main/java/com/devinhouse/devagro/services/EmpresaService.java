@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class EmpresaService {
 
     private EmpresaRepository empresaRepository;
@@ -27,7 +28,7 @@ public class EmpresaService {
         return empresaRepository.findById(id);
     }
 
-    @Transactional
+
     public Empresa add(Empresa empresa){
         return empresaRepository.save(empresa);
     }
@@ -37,7 +38,7 @@ public class EmpresaService {
         return empresaRepository.save(empresa);
     }
 
-    @Transactional
+
     public void delete(Empresa empresa){
         empresaRepository.delete(empresa);
     }

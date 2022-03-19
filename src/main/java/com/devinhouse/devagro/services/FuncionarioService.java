@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class FuncionarioService {
 
     private FuncionarioRepository funcionarioRepository;
@@ -23,7 +24,7 @@ public class FuncionarioService {
         return funcionarioRepository.getById(id);
     }
 
-    @Transactional
+
     public Funcionario add(Funcionario funcionario){
         return funcionarioRepository.save(funcionario);
     }
@@ -33,7 +34,7 @@ public class FuncionarioService {
         return result;
     }
 
-    @Transactional
+
     public void delete(Funcionario funcionario){
         funcionarioRepository.delete(funcionario);
     }
