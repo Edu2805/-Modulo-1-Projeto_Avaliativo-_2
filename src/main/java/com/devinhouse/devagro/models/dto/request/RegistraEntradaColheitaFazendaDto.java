@@ -3,6 +3,8 @@ package com.devinhouse.devagro.models.dto.request;
 import com.devinhouse.devagro.models.Fazenda;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,6 +13,7 @@ public class RegistraEntradaColheitaFazendaDto {
 
     private Long id;
     private double estoque;
+    @NotBlank
     private double entradaColheita;
 
     public Fazenda converterRegistraEntradaColheitaFazenda(){

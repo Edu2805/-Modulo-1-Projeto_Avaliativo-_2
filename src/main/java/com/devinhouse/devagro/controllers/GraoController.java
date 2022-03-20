@@ -1,9 +1,7 @@
 package com.devinhouse.devagro.controllers;
 
-import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.models.dto.request.CadastroGraoDto;
-import com.devinhouse.devagro.models.dto.response.ListaEstoqueGraosEmpresaCrescenteDto;
 import com.devinhouse.devagro.models.dto.response.ListaGraosDto;
 import com.devinhouse.devagro.models.dto.response.ListaGraosEmpresaDto;
 import com.devinhouse.devagro.services.GraoService;
@@ -11,10 +9,10 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -32,22 +30,10 @@ public class GraoController {
         return modelMapper.map(grao, ListaGraosDto.class);
     }
 
+    //Aplicando os métodos do Model Mapper para conversão da entidade para DTO
     public ListaGraosEmpresaDto listaGraosEmpresaDto(Grao grao) {
         return modelMapper.map(grao, ListaGraosEmpresaDto.class);
     }
-
-//    public ListaEstoqueGraosEmpresaCrescenteDto listaEstoqueGraosEmpresaCrescenteDto(Grao grao) {
-//        return modelMapper.map(grao, ListaEstoqueGraosEmpresaCrescenteDto.class);
-//    }
-
-//    @GetMapping(value = "/estoquegraoscrescente/{id}")
-//    public ResponseEntity<List<ListaEstoqueGraosEmpresaCrescenteDto>> listaGraosEmpresaEstoqueAsc(@PathVariable Long id) {
-//
-//
-//        return ResponseEntity.ok().body(graoService.listaEstoqueGraosEmpresaAsc(id)
-//                .stream().map(this::listaEstoqueGraosEmpresaCrescenteDto)
-//                .collect(Collectors.toList()));
-//    }
 
     @GetMapping(value = "/listargraosempresa/{id}")
     public ResponseEntity<List<ListaGraosEmpresaDto>> listaGraosEmpresa(@PathVariable Long id) {
@@ -57,7 +43,6 @@ public class GraoController {
                 .collect(Collectors.toList()));
     }
 
-
     @GetMapping
     public ResponseEntity<List<ListaGraosDto>> listaGraos() {
         return ResponseEntity.ok().body(graoService.findAll()
@@ -66,7 +51,7 @@ public class GraoController {
     }
 
     @PostMapping
-    public ResponseEntity<CadastroGraoDto> insert(@RequestBody @Valid CadastroGraoDto cadastroGraoDto){
+    public ResponseEntity<CadastroGraoDto> insert(@RequestBody @Validated CadastroGraoDto cadastroGraoDto){
         var grao = new Grao();
         grao = graoService.add(cadastroGraoDto.converter());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")

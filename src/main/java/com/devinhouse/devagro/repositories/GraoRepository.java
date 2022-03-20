@@ -1,6 +1,5 @@
 package com.devinhouse.devagro.repositories;
 
-import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Grao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +11,11 @@ import java.util.List;
 public interface GraoRepository extends JpaRepository<Grao, Long> {
 
 
+    /*
+    Query personalizada para listar os grão de uma determinada empresa
+    Foi necessário usar o Distinct para não repetir o nome dos grão que vem listados
+    Foram feitos joins entre a Entidade Fazenda e Empresa
+     */
     @Query(value = "SELECT DISTINCT G " +
             "FROM Grao AS G " +
             "INNER JOIN Fazenda AS F " +

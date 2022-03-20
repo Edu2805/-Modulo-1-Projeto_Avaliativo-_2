@@ -15,13 +15,13 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class CadastroEmpresaDto {
 
-    @NotBlank
+    @NotBlank(message = "Nome não pode estar em branco!")
     @Size(max = 60)
     private String nome;
-    @NotBlank
+    @NotBlank(message = "CNPJ não pode estar em branco!")
     @Size(max = 18)
     private String cnpj;
-    @NotBlank
+    @NotBlank(message = "Endereço não pode estar em branco!")
     @Size(max = 100)
     private String endereco;
 

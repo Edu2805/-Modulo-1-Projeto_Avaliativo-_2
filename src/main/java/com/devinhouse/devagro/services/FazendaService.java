@@ -1,8 +1,6 @@
 package com.devinhouse.devagro.services;
 
 import com.devinhouse.devagro.models.Fazenda;
-import com.devinhouse.devagro.models.Grao;
-import com.devinhouse.devagro.models.dto.response.ListaFazendasDetalhadasEmpresaDto;
 import com.devinhouse.devagro.repositories.FazendaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-@Transactional
 public class FazendaService {
 
     private FazendaRepository fazendaRepository;
@@ -26,11 +23,12 @@ public class FazendaService {
         return fazendaRepository.getById(id);
     }
 
-
+    @Transactional
     public Fazenda add(Fazenda fazenda){
         return fazendaRepository.save(fazenda);
     }
 
+    @Transactional
     public Fazenda update(Fazenda fazenda){
 
 
@@ -42,7 +40,7 @@ public class FazendaService {
         return fazendaRepository.findById(id);
     }
 
-
+    @Transactional
     public void delete(Fazenda fazenda){
         fazendaRepository.delete(fazenda);
     }

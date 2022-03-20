@@ -1,26 +1,26 @@
 package com.devinhouse.devagro.controllers;
 
 import com.devinhouse.devagro.models.Fazenda;
-import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.models.dto.request.CadastroFazendaDto;
 import com.devinhouse.devagro.models.dto.request.RegistraEntradaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.request.RegistraSaidaColheitaFazendaDto;
 import com.devinhouse.devagro.models.dto.response.*;
 import com.devinhouse.devagro.services.FazendaService;
-import com.devinhouse.devagro.services.GraoService;
 import com.devinhouse.devagro.validations.ValidacaoEstoque;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,11 +30,10 @@ import java.util.stream.Collectors;
 public class FazendaController {
 
     private FazendaService fazendaService;
-//    private GraoService graoService;
     private ModelMapper modelMapper;
     private ValidacaoEstoque validacaoEstoque;
 
-    //Convert DTOs
+    //Aplicando os métodos do Model Mapper para conversão da entidade para DTO
     public ListaFazendasDto listaFazendasDtoConverter(Fazenda fazenda) {
         return modelMapper.map(fazenda, ListaFazendasDto.class);
     }
@@ -75,6 +74,7 @@ public class FazendaController {
     @GetMapping(value = "/listafazendasdetalhadas/{id}")
     public ResponseEntity<List<ListaFazendasDetalhadasEmpresaDto>> listaFazendasDetalhadasEmpresa(@PathVariable Long id) {
 
+        //Método para apresentar a data prevista da próxima colheita
         fazendaService.findFazendasByEmpresa(id)
                 .listIterator()
                 .forEachRemaining(fazenda -> {
@@ -98,6 +98,16 @@ public class FazendaController {
     @GetMapping(value = "/estoquegraoscrescente/{id}")
     public ResponseEntity<List<ListaEstoqueGraosEmpresaCrescenteDto>> listaGraosEmpresaEstoqueAsc(@PathVariable Long id) {
 
+//        List<Fazenda> listaFazendas;
+//        listaFazendas = fazendaService.findAll();
+//
+//        double somaEstoque = 0.0;
+//        for(Fazenda fazendas : listaFazendas){
+//            if(Objects.equals(fazendas.getGrao().getId(), fazendas.getGrao().getId()))
+//                somaEstoque += fazendas.getEstoque();
+//            fazendas.setEstoque(somaEstoque);
+//        }
+
         return ResponseEntity.ok().body(fazendaService.findFazendaByGrao_IdAndEstoqueOrderByEmpresaEstoqueAsc(id)
                 .stream().map(this::listaEstoqueGraosEmpresaCrescenteDto)
                 .collect(Collectors.toList()));
@@ -109,6 +119,7 @@ public class FazendaController {
         Optional<Fazenda> optionalFazenda = fazendaService.findByIdUpDate(id);
         Fazenda fazenda = optionalFazenda.get();
 
+        //Verifica se o valor digitado pelo usuário é negativo
         if(validacaoEstoque.validaEntrada(registraColheitaFazendaDto.getEntradaColheita())){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Valor não pode ser negativo!");
         }
@@ -124,6 +135,7 @@ public class FazendaController {
         Optional<Fazenda> optionalFazenda = fazendaService.findByIdUpDate(id);
         Fazenda fazenda = optionalFazenda.get();
 
+        //Controla o estoque para o mesmo não ficar negativo
         if(validacaoEstoque.validaEstoque(optionalFazenda.get().getEstoque(), registraSaidaColheitaFazendaDto.getSaidaColheita())){
             URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")
                     .buildAndExpand(fazenda.getId()).toUri();
@@ -135,7 +147,7 @@ public class FazendaController {
     }
 
     @PostMapping
-    public ResponseEntity<CadastroFazendaDto> insert(@RequestBody @Valid CadastroFazendaDto cadastroFazendaDto){
+    public ResponseEntity<CadastroFazendaDto> insert(@RequestBody @Validated CadastroFazendaDto cadastroFazendaDto){
         var fazenda = new Fazenda();
         fazenda = fazendaService.add(cadastroFazendaDto.converter());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")

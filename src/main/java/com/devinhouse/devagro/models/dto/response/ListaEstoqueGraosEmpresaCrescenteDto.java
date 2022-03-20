@@ -12,10 +12,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class ListaEstoqueGraosEmpresaCrescenteDto {
 
-
+    //Serializer para buscar somente o nome do grão, ao invés da classe onteira
     @JsonSerialize(using = Serializador.class)
     private Grao grao;
     private double estoque;

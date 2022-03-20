@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -14,6 +16,7 @@ public class RegistraSaidaColheitaFazendaDto {
 
     private Long id;
     private double estoque;
+    @NotBlank
     private double saidaColheita;
 
 

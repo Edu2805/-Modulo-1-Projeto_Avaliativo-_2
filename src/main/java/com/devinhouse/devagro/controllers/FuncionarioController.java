@@ -10,10 +10,10 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +27,7 @@ public class FuncionarioController {
     private FuncionarioService funcionarioService;
     private ModelMapper modelMapper;
 
+    //Aplicando os métodos do Model Mapper para conversão da entidade para DTO
     public ListaFuncionariosEmpresaDto listaFuncionariosEmpresaDtoConverter(Funcionario funcionario) {
         return modelMapper.map(funcionario, ListaFuncionariosEmpresaDto.class);
     }
@@ -51,15 +52,17 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> insert(@RequestBody @Valid CadastroFuncionarioDto cadastroFuncionarioDto){
+    public ResponseEntity<Object> insert(@RequestBody @Validated CadastroFuncionarioDto cadastroFuncionarioDto){
 
         var funcionario = new Funcionario();
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{id}")
                 .buildAndExpand(funcionario.getId()).toUri();
 
+        //Verifica validação do telefone
         if(ValidacaoTelefone.validaTelefone(cadastroFuncionarioDto.getTelefone())) {
             if (ValidacaoCpf.formatoCpf(cadastroFuncionarioDto.converter().getCpf())) {
 
+                //Verifica a validação do CPF
                 String cpfVerificacao = ValidacaoCpf.trataCpf(cadastroFuncionarioDto.converter().getCpf());
                 if (!ValidacaoCpf.isCPF(cpfVerificacao)) {
 

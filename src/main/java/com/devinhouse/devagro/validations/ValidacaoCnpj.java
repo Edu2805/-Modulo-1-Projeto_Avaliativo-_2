@@ -6,7 +6,7 @@ public class ValidacaoCnpj {
 
     public static boolean isCNPJ(String CNPJ) {
 
-        // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
+        // Evita que numerações repetidas sejam inseridas pelo usuário
         if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||
                 CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333") ||
                 CNPJ.equals("44444444444444") || CNPJ.equals("55555555555555") ||
@@ -18,15 +18,12 @@ public class ValidacaoCnpj {
         char dig13, dig14;
         int sm, i, r, num, peso;
 
-        // "try" - protege o código para eventuais erros de conversao de tipo (int)
         try {
-        // Calculo do 1o. Digito Verificador
+        // Calculando o primeiro dígito verificador
             sm = 0;
             peso = 2;
             for (i = 11; i >= 0; i--) {
-        // converte o i-ésimo caractere do CNPJ em um número:
-        // por exemplo, transforma o caractere '0' no inteiro 0
-        // (48 eh a posição de '0' na tabela ASCII)
+
                 num = (int) (CNPJ.charAt(i) - 48);
                 sm = sm + (num * peso);
                 peso = peso + 1;
@@ -39,7 +36,7 @@ public class ValidacaoCnpj {
                 dig13 = '0';
             else dig13 = (char) ((11 - r) + 48);
 
-        // Calculo do 2o. Digito Verificador
+        // Calculando o segundo dígito verificador
             sm = 0;
             peso = 2;
             for (i = 12; i >= 0; i--) {
@@ -64,17 +61,18 @@ public class ValidacaoCnpj {
         }
     }
 
+    // Aplicando a formatação para saída de dados
     public static String imprimeCNPJ(String CNPJ) {
-        // máscara do CNPJ: 99.999.999.9999-99
         return (CNPJ.substring(0, 2) + "." + CNPJ.substring(3, 6) + "." +
                 CNPJ.substring(7, 10) + "." + CNPJ.substring(11, 15) + "-" +
                 CNPJ.substring(16, 18));
     }
 
+    //Regex para entrada do usuário
     public static boolean formatoCnpj(String cnpj){
         return cnpj.matches("([0-9]{2}[.][0-9]{3}[.][0-9]{3}[/][0-9]{4}[-][0-9]{2})");
     }
-
+    //Após o usuário digitar o CNPJ, os pontos e barras são eliminados para o verificador de CNPJ fazer a validação
     public static String trataCnpj(String cnpj){
 
         cnpj = cnpj.replace(".", "");

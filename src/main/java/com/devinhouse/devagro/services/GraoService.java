@@ -1,6 +1,5 @@
 package com.devinhouse.devagro.services;
 
-import com.devinhouse.devagro.models.Fazenda;
 import com.devinhouse.devagro.models.Grao;
 import com.devinhouse.devagro.repositories.GraoRepository;
 import lombok.AllArgsConstructor;
@@ -12,7 +11,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-@Transactional
+
 public class GraoService {
 
     private GraoRepository graoRepository;
@@ -25,21 +24,21 @@ public class GraoService {
         return graoRepository.getById(id);
     }
 
-
+    @Transactional
     public Grao add(Grao grao){
         return graoRepository.save(grao);
     }
 
+    @Transactional
     public Grao update(Long id, Grao grao){
         Grao result = graoRepository.save(grao);
         return result;
     }
 
-
+    @Transactional
     public void delete(Grao grao){
         graoRepository.delete(grao);
     }
-
 
     public Optional<Grao> findByIdDelete(Long id) {
         return graoRepository.findById(id);

@@ -1,6 +1,5 @@
 package com.devinhouse.devagro.models.dto.response;
 
-import com.devinhouse.devagro.models.Empresa;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
