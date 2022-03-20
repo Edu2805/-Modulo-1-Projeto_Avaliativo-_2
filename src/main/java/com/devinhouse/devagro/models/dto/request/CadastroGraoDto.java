@@ -17,12 +17,12 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class CadastroGraoDto {
 
-    @NotBlank
+    @NotBlank(message = "Nome não pode estar em branco!")
     @Size(max = 60)
     private String nome;
-    @NotNull
+    @NotNull(message = "Empresa não pode estar em branco!")
     private Empresa empresa;
-    @NotNull
+    @NotNull(message = "Tempo médio de colheita não pode estar em branco!")
     private Long tempoMedioColheita;
 
     public Grao converter(){

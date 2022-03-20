@@ -13,7 +13,7 @@ public class RegistraEntradaColheitaFazendaDto {
 
     private Long id;
     private double estoque;
-    @NotBlank
+    @NotBlank(message = "Entrada de colheita não pode estar em branco!")
     private double entradaColheita;
 
     public Fazenda converterRegistraEntradaColheitaFazenda(){

@@ -19,17 +19,17 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CadastroFazendaDto {
 
-    @NotBlank
+    @NotBlank(message = "Nome não pode estar em branco!")
     @Size(max = 60)
     private String nome;
-    @NotBlank
+    @NotBlank(message = "Endereço não pode estar em branco!")
     @Size(max = 100)
     private String endereco;
-    @NotNull
+    @NotNull(message = "Grão não pode estar em branco!")
     private Grao grao;
-    @NotNull
+    @NotNull(message = "Estoque não pode estar em branco!")
     private double estoque;
-    @NotNull
+    @NotNull(message = "Empresa não pode estar em branco!")
     private Empresa empresa;
     private LocalDate ultimaColheita;
 

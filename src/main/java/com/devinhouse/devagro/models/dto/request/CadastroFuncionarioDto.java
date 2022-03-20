@@ -19,28 +19,28 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CadastroFuncionarioDto {
 
-    @NotBlank
+    @NotBlank(message = "Nome não pode estar em branco!")
     @Size(max = 60)
     private String nome;
-    @NotBlank
+    @NotBlank(message = "Sobrenome não pode estar em branco!")
     @Size(max = 60)
     private String sobrenome;
-    @NotBlank
+    @NotBlank(message = "Cpf não pode estar em branco!")
     @Size(max = 14)
     private String cpf;
-    @NotBlank
+    @NotBlank(message = "Endereço não pode estar em branco!")
     @Size(max = 100)
     private String endereco;
-    @NotBlank
+    @NotBlank(message = "Telefone não pode estar em branco!")
     @Size(max = 14)
     private String telefone;
-    @NotNull
+    @NotNull(message = "Sexo não pode estar em branco!")
     private Sexo sexo;
-    @NotNull
+    @NotNull(message = "Data de nascimento não pode estar em branco!")
     private LocalDate dataNascimento;
-    @NotNull
+    @NotNull(message = "Data admissão não pode estar em branco!")
     private LocalDate dataAdmissao;
-    @NotNull
+    @NotNull(message = "Empresa não pode estar em branco!")
     private Empresa empresa;
 
     public Funcionario converter(){

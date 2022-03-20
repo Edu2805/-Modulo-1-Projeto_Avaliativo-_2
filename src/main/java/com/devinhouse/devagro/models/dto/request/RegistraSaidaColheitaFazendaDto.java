@@ -16,7 +16,7 @@ public class RegistraSaidaColheitaFazendaDto {
 
     private Long id;
     private double estoque;
-    @NotBlank
+    @NotBlank(message = "Saída de colheita não pode estar em branco!")
     private double saidaColheita;
 
 
