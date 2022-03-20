@@ -6,6 +6,7 @@
 
 ```bash
     Cadastro de Empresas
+    http://localhost:8080/empresa
 
 {
     "nome": "Nome da empresa",
@@ -14,6 +15,7 @@
 }
 ############################################################
     Cadastro de Funcionarios
+    http://localhost:8080/funcionario
 
 {
     "nome": "Nome",
@@ -30,6 +32,7 @@
 }
 ############################################################
     Cadastro de Grãos
+    http://localhost:8080/grao
 
 {
     "nome": "Grao",
@@ -40,6 +43,7 @@
 }
 ############################################################
     Cadastro de Fazendas
+    http://localhost:8080/fazenda
 
 {
     "nome": "Fazenda",
@@ -55,12 +59,14 @@
 }
 ############################################################
     Registro de colheita(Entrada de grãos no estoque)
+    http://localhost:8080/fazenda/registraentradacolheita/{id}
 
 {
     "entradaColheita": 100 
 }
 ############################################################
     Registro de colheita(Saída de grãos no estoque)
+    http://localhost:8080/fazenda/registrasaidacolheita/{id}
 
 {
     "saidaColheita": 100  
