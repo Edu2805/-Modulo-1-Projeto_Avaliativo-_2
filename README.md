@@ -79,10 +79,10 @@
 <p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista de fazendas de uma empresa (ID, nome, data previsão colheita, tempo médio de colheita)</p>
 <p>🔗 http://localhost:8080/fazenda/listafazendasdetalhadas/{id}</p>
 <hr>
-<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Post.png" title="Readme"/>Registro de colheita (Entrada de grãos no estoque)</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Put.png" title="Readme"/>Registro de colheita (Entrada de grãos no estoque)</p>
 <p>🔗 http://localhost:8080/fazenda/registraentradacolheita/{id}</p>
 <hr>
-<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Post.png" title="Readme"/>Registro de colheita (Saída de grãos no estoque)</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Put.png" title="Readme"/>Registro de colheita (Saída de grãos no estoque)</p>
 <p>🔗 http://localhost:8080/fazenda/registrasaidacolheita/{id}</p>
 <hr>
 <p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista de grãos de uma empresa</p>
