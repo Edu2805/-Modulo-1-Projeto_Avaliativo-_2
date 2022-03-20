@@ -67,7 +67,7 @@
 } 
 ```
 <h4 align="center">End-Points para testes</h4>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Lista completa de empresas cadastradas</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista completa de empresas cadastradas</p>
 <p>🔗 http://localhost:8080/empresa</p>
 <hr>
 <p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Lista de fazendas de uma empresa</p>
