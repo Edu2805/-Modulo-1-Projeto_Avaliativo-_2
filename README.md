@@ -70,37 +70,37 @@
 <p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista completa de empresas cadastradas</p>
 <p>🔗 http://localhost:8080/empresa</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Lista de fazendas de uma empresa</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista de fazendas de uma empresa</p>
 <p>🔗 http://localhost:8080/fazenda/listarfazendasempresa/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Quantidade de fazendas de uma empresa</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Quantidade de fazendas de uma empresa</p>
 <p>🔗 http://localhost:8080/fazenda/quantidadefazendas/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Lista de fazendas de uma empresa (ID, nome, data previsão colheita, tempo médio de colheita)</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista de fazendas de uma empresa (ID, nome, data previsão colheita, tempo médio de colheita)</p>
 <p>🔗 http://localhost:8080/fazenda/listafazendasdetalhadas/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Put.png" title="Readme"/>Registro de colheita (Entrada de grãos no estoque)</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Post.png" title="Readme"/>Registro de colheita (Entrada de grãos no estoque)</p>
 <p>🔗 http://localhost:8080/fazenda/registraentradacolheita/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Put.png" title="Readme"/>Registro de colheita (Saída de grãos no estoque)</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Post.png" title="Readme"/>Registro de colheita (Saída de grãos no estoque)</p>
 <p>🔗 http://localhost:8080/fazenda/registrasaidacolheita/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Lista de grãos de uma empresa</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista de grãos de uma empresa</p>
 <p>🔗 http://localhost:8080/grao/listargraosempresa/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Lista de grãos (nome do grão, quantidade de estoque em ordem ascendente)</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista de grãos (nome do grão, quantidade de estoque em ordem ascendente)</p>
 <p>🔗 http://localhost:8080/fazenda/estoquegraoscrescente/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Lista de funcionários de uma empresa</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Lista de funcionários de uma empresa</p>
 <p>🔗 http://localhost:8080/funcionario/listarfuncionariosempresa/{id}</p>
 <hr>
-<p><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/Get.png" title="Readme"/>Quantidade de funcionários de uma empresa</p>
+<p><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/Get.png" title="Readme"/>Quantidade de funcionários de uma empresa</p>
 <p>🔗 http://localhost:8080/funcionario/quantidadefuncionarios/{id}</p>
 <hr>
 <h3 align="center">*********** DETALHES DOS END-POINTS ***********</h3>
-<p align="center"><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/RotasHttp.png" title="Readme"/></p>
+<p align="center"><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/RotasHttp.png" title="Readme"/></p>
 
 <h3 align="center">*********** PROPOSTA ORM ***********</h3>
-<p align="center"><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/ORMDevAgro.png" title="Readme"/></p>
+<p align="center"><img src="https://github.com/Edu2805/-Modulo-1-Projeto_Avaliativo-_2/blob/main/images/ORMDevAgro.png" title="Readme"/></p>
 <h4 align="center"> 🚧 Projeto em construção 🚧</h4>
 
