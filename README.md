@@ -98,14 +98,9 @@
 <p>🔗 http://localhost:8080/funcionario/quantidadefuncionarios/{id}</p>
 <hr>
 <h3 align="center">*********** DETALHES DOS END-POINTS ***********</h3>
-<p align="center">
-    <img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/RotasHttp.png" title="Readme"/>
-</p>
-
+<p align="center"><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/RotasHttp.png" title="Readme"/></p>
 
 <h3 align="center">*********** PROPOSTA ORM ***********</h3>
-<p align="center">
-    <img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/ORMDevAgro.png" title="Readme"/>
-</p>
+<p align="center"><img src="/Users/eduardoamorim/Documents/Programacao/DevInHouse/Spring/Projeto2/devagro/images/ORMDevAgro.png" title="Readme"/></p>
 <h4 align="center"> 🚧 Projeto em construção 🚧</h4>
 
